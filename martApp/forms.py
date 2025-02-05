@@ -1,6 +1,6 @@
 from django import forms
 from stripe import Review 
-from core.models import ProductReview
+from martApp.models import ProductReview
 
 
 class ProductReviewForm(forms.ModelForm):

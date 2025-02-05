@@ -4,9 +4,9 @@ from django.shortcuts import redirect, render, get_object_or_404
 from requests import session
 import stripe
 from taggit.models import Tag
-from core.models import Coupon, Product, Category, Vendor, CartOrder, CartOrderProducts, ProductImages, ProductReview, wishlist_model, Address
+from martApp.models import Coupon, Product, Category, Vendor, CartOrder, CartOrderProducts, ProductImages, ProductReview, wishlist_model, Address
 from userauths.models import ContactUs, Profile
-from core.forms import ProductReviewForm
+from martApp.forms import ProductReviewForm
 from django.template.loader import render_to_string
 from django.contrib import messages
 
@@ -19,7 +19,7 @@ from django.contrib.auth.decorators import login_required
 import calendar
 from django.db.models import Count, Avg
 from django.db.models.functions import ExtractMonth
-from django.core import serializers
+# from django.core import serializers
 
 def index(request):
     # bannanas = Product.objects.all().order_by("-id")
@@ -254,7 +254,7 @@ def cart_view(request):
                                  })
     else:
         messages.warning(request, "Your cart is empty")
-        return redirect("core:index")
+        return redirect("martApp:index")
 
 
 def delete_item_from_cart(request):
@@ -374,8 +374,8 @@ def save_checkout_info(request):
 
 
 
-        return redirect("core:checkout", order.oid)
-    return redirect("core:checkout", order.oid)
+        return redirect("martApp:checkout", order.oid)
+    return redirect("martApp:checkout", order.oid)
 
 
 @csrf_exempt
@@ -399,8 +399,8 @@ def create_checkout_session(request, oid):
             }
         ],
         mode = 'payment',
-        success_url = request.build_absolute_uri(reverse("core:payment-completed", args=[order.oid])) + "?session_id={CHECKOUT_SESSION_ID}",
-        cancel_url = request.build_absolute_uri(reverse("core:payment-completed", args=[order.oid]))
+        success_url = request.build_absolute_uri(reverse("martApp:payment-completed", args=[order.oid])) + "?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url = request.build_absolute_uri(reverse("martApp:payment-completed", args=[order.oid]))
     )
 
     order.paid_status = False
@@ -424,7 +424,7 @@ def checkout(request, oid):
         if coupon:
             if coupon in order.coupons.all():
                 messages.warning(request, "Coupon already activated")
-                return redirect("core:checkout", order.oid)
+                return redirect("martApp:checkout", order.oid)
             else:
                 discount = order.price * coupon.discount / 100 
 
@@ -434,7 +434,7 @@ def checkout(request, oid):
                 order.save()
 
                 messages.success(request, "Coupon Activated")
-                return redirect("core:checkout", order.oid)
+                return redirect("martApp:checkout", order.oid)
         else:
             messages.error(request, "Coupon Does Not Exists")
 
@@ -493,7 +493,7 @@ def customer_dashboard(request):
             mobile=mobile,
         )
         messages.success(request, "Address Added Successfully.")
-        return redirect("core:dashboard")
+        return redirect("martApp:dashboard")
     else:
         print("Error")
     

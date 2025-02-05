@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <form action="{% url 'core:save_checkout_info' %}" method="POST">
+            <form action="{% url 'martApp:save_checkout_info' %}" method="POST">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-lg-8">
@@ -43,7 +43,7 @@
                                     <tr class="pt-30">
                                         <td class="image product-thumbnail pt-40"><img src="{{ item.image }}" alt="#"></td>
                                         <td class="product-des product-name">
-                                            <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="{% url 'core:product-detail' item.pid %}">{{ item.title }}</a></h6>
+                                            <h6 class="mb-5"><a class="product-name mb-10 text-heading" href="{% url 'martApp:product-detail' item.pid %}">{{ item.title }}</a></h6>
                                         
                                         </td>
                                         <td class="price" data-title="Price">

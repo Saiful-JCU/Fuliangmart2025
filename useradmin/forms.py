@@ -1,4 +1,4 @@
-from core.models import Product
+from martApp.models import Product
 from django import forms
 # from bootstrap_datepicker_plus import DatePickerInput
 

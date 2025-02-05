@@ -184,7 +184,7 @@ class CartOrder(models.Model):
 
     price = models.DecimalField(max_digits=12, decimal_places=2, default="0.00")
     saved = models.DecimalField(max_digits=12, decimal_places=2, default="0.00")
-    coupons = models.ManyToManyField("core.Coupon", blank=True)
+    coupons = models.ManyToManyField("martApp.Coupon", blank=True)
     
     shipping_method = models.CharField(max_length=100, null=True, blank=True)
     tracking_id = models.CharField(max_length=100, null=True, blank=True)
