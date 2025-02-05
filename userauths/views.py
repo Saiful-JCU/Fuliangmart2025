@@ -21,7 +21,7 @@ def register_view(request):
             )
             login(request, new_user)
 
-            next_url = request.GET.get("next", 'core:index')
+            next_url = request.GET.get("next", 'martApp:index')
             return redirect(next_url)
     else:
         form = UserRegisterForm()
@@ -36,7 +36,7 @@ def register_view(request):
 def login_view(request):
     if request.user.is_authenticated:
         messages.warning(request, f"Hey you are already Logged In.")
-        return redirect("core:index")
+        return redirect("martApp:index")
     
     if request.method == "POST":
         email = request.POST.get("email") # peanuts@gmail.com
@@ -49,7 +49,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, "You are logged in.")
-                next_url = request.GET.get("next", 'core:index')
+                next_url = request.GET.get("next", 'martApp:index')
                 return redirect(next_url)
             else:
                 messages.warning(request, "User Does Not Exist, create an account.")
@@ -79,7 +79,7 @@ def profile_update(request):
             new_form.user = request.user
             new_form.save()
             messages.success(request, "Profile Updated Successfully.")
-            return redirect("core:dashboard")
+            return redirect("martApp:dashboard")
     else:
         form = ProfileForm(instance=profile)
 

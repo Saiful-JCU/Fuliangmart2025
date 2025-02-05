@@ -1,1 +1,1 @@
-web: gunicorn ecomprj.wsgi --log-file -
+web: gunicorn fuliangmart.wsgi --log-file -

@@ -1,1 +1,7 @@
 python-3.9.1
+
+superuser:
+
+Email: msik.milon@gmail.com
+Username: Saiful Islam
+Password: Saiful2025
