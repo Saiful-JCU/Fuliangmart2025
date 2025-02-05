@@ -6,3 +6,6 @@ db.sqlite3
 # Ignore __pycache__ directories and .pyc files
 **/__pycache__/
 *.pyc
+
+*.pyc
+__pycache__/
