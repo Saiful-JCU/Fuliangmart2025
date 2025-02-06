@@ -378,8 +378,8 @@ def save_checkout_info(request):
     return redirect("martApp:checkout", order.oid)
 
 
-@csrf_exempt
-def create_checkout_session(request, oid):
+# @csrf_exempt
+# def create_checkout_session(request, oid):
     order = CartOrder.objects.get(oid=oid)
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -443,7 +443,7 @@ def checkout(request, oid):
     context = {
         "order": order,
         "order_items": order_items,
-        "stripe_publishable_key": settings.STRIPE_PUBLIC_KEY,
+        # "stripe_publishable_key": settings.STRIPE_PUBLIC_KEY,
 
     }
     return render(request, "core/checkout.html", context)
@@ -451,18 +451,28 @@ def checkout(request, oid):
 
 @login_required
 def payment_completed_view(request, oid):
-    order = CartOrder.objects.get(oid=oid)
+    # order = CartOrder.objects.get(oid=oid)
     
-    if order.paid_status == False:
-        order.paid_status = True
-        order.save()
+    # if order.paid_status == False:
+    #     order.paid_status = True
+    #     order.save()
         
-    context = {
-        "order": order,
-        "stripe_publishable_key": settings.STRIPE_PUBLIC_KEY,
+    # context = {
+    #     "order": order,
+    #     # "stripe_publishable_key": settings.STRIPE_PUBLIC_KEY,
 
-    }
-    return render(request, 'core/payment-completed.html',  context)
+    # }
+    # return render(request, 'core/payment-completed.html',  context)
+    latest_order = CartOrder.objects.filter(user=request.user).order_by('-order_date').first()
+    
+    order_items = CartOrderProducts.objects.filter(order=latest_order)
+
+    return render(request, "core/payment-completed.html", {
+        'order': latest_order,
+        'order_items': order_items,
+        'totalcartitems': order_items.count(),
+        'cart_total_amount': latest_order.price,
+    })
 
 @login_required
 def payment_failed_view(request):

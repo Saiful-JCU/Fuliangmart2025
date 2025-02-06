@@ -1,1 +1,0 @@
-web: gunicorn fuliangmart.wsgi --log-file -

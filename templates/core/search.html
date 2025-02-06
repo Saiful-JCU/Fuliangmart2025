@@ -104,7 +104,9 @@
 
                                   </div>
                                   <div>
-                                      <span class="font-small text-muted">By <a href="{% url 'martApp:vendor-detail' p.vendor.vid %}">{{p.vendor.title}}</a></span>
+                                    {% if p.vendor and p.vendor.vid %}
+                                        <span class="font-small text-muted">By <a href="{% url 'martApp:vendor-detail' p.vendor.vid %}">{{p.vendor.title}}</a></span>
+                                    {% endif %}
                                   </div>
                                   <div class="product-card-bottom">
                                       <div class="product-price">
