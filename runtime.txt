@@ -1,11 +1,2 @@
-python-3.9.1
+python-3.12.5
 
-superuser:
-
-Email: msik.milon@gmail.com
-Username: Saiful Islam
-Password: Saiful2025
-
-
-Procfile property:
-web: gunicorn fuliangmart.wsgi --log-file -

@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-%o9!c3rf02q6usr!vw^s96^t*(dsv&ezbs)_u_k7^z1oa$ik0r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 
@@ -380,5 +380,5 @@ CKEDITOR_5_CONFIGS = {
 # STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
 
 
-PAYPAL_RECEIVER_EMAIL = 'businessdestiny@gmail.com'
-PAYPAL_TEST = True
+# PAYPAL_RECEIVER_EMAIL = 'businessdestiny@gmail.com'
+# PAYPAL_TEST = True
