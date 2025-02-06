@@ -13,7 +13,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-from paypal.standard.forms import PayPalPaymentsForm
+# from paypal.standard.forms import PayPalPaymentsForm
 from django.contrib.auth.decorators import login_required
 
 import calendar

@@ -27,7 +27,7 @@ urlpatterns = [
     # path("api/create_checkout_session/<oid>/", create_checkout_session, name="api_checkout_session"),
     path("save_checkout_info/", save_checkout_info, name="save_checkout_info"),
     path("checkout/<oid>/", checkout, name="checkout"),
-    path('paypal/', include('paypal.standard.ipn.urls')),
+    # path('paypal/', include('paypal.standard.ipn.urls')),
     path("payment-completed/<oid>/", payment_completed_view, name="payment-completed"),
     path("payment-failed/", payment_failed_view, name="payment-failed"),
     path("dashboard/", customer_dashboard, name="dashboard"),

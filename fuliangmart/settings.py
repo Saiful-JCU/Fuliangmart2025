@@ -71,7 +71,7 @@ INSTALLED_APPS = [
     'taggit',
     'crispy_bootstrap5',
     'django_ckeditor_5',
-    'paypal.standard.ipn',
+    # 'paypal.standard.ipn',
 
     # Custom Apps
     'martApp',
